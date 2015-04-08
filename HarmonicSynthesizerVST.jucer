@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="s0JlEY" name="HarmonicSynthesizerVST" projectType="audioplug"
+              version="1.0.0" bundleIdentifier="com.yourcompany.HarmonicSynthesizerVST"
+              includeBinaryInAppConfig="1" buildVST="0" buildVST3="1" buildAU="0"
+              buildRTAS="0" buildAAX="0" pluginName="HarmonicSynthesizerVST"
+              pluginDesc="HarmonicSynthesizerVST" pluginManufacturer="OddSounds"
+              pluginManufacturerCode="OddS" pluginCode="Harm" pluginChannelConfigs="{1, 1}, {2, 2}"
+              pluginIsSynth="1" pluginWantsMidiIn="1" pluginProducesMidiOut="0"
+              pluginSilenceInIsSilenceOut="0" pluginEditorRequiresKeys="0"
+              pluginAUExportPrefix="HarmonicSynthesizerVSTAU" pluginRTASCategory=""
+              aaxIdentifier="com.yourcompany.HarmonicSynthesizerVST" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
+              jucerVersion="3.1.0" companyName="Odd Sounds">
+  <MAINGROUP id="O1OqZG" name="HarmonicSynthesizerVST">
+    <GROUP id="{3ACBD117-752A-465B-70F1-FBBBF933D252}" name="Headers">
+      <FILE id="XXMclH" name="HarmonicGainComponent.h" compile="0" resource="0"
+            file="Source/HarmonicGainComponent.h"/>
+      <FILE id="c8qqxf" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="BL8rd6" name="PluginGUI.h" compile="0" resource="0" file="Source/PluginGUI.h"/>
+      <FILE id="Z3pj1b" name="HarmonicVoice.h" compile="0" resource="0" file="Source/HarmonicVoice.h"/>
+      <FILE id="iYKWBe" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+    </GROUP>
+    <GROUP id="{E7B5F7EF-12A4-74B3-7B79-62DFFD394B20}" name="Source">
+      <FILE id="y5jmA8" name="HarmonicGainComponent.cpp" compile="1" resource="0"
+            file="Source/HarmonicGainComponent.cpp"/>
+      <FILE id="dpy6l9" name="HarmonicVoice.cpp" compile="1" resource="0"
+            file="Source/HarmonicVoice.cpp"/>
+      <FILE id="AwGcyF" name="PluginGUI.cpp" compile="1" resource="0" file="Source/PluginGUI.cpp"/>
+      <FILE id="h0vEfu" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="FMMoRw" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <VS2010 targetFolder="Builds/VisualStudio2010">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="HarmonicSynthesizerVST"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="2" targetName="HarmonicSynthesizerVST"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_events" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_graphics" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_data_structures" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_cryptography" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_video" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_opengl" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="C:/SDKs/JUCE-WINDOWS/modules"/>
+      </MODULEPATHS>
+    </VS2010>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULES id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_audio_processors" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_audio_utils" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_core" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_cryptography" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_events" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_opengl" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_video" showAllCode="1" useLocalCopy="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
+</JUCERPROJECT>

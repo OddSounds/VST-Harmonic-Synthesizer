@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{0FF18740-C0C6-55D8-7087-FEB4D5850959}") = "HarmonicSynthesizerVST", "HarmonicSynthesizerVST.vcxproj", "{6396ECD6-CFD3-3A8F-DD3A-28A905D502AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6396ECD6-CFD3-3A8F-DD3A-28A905D502AE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6396ECD6-CFD3-3A8F-DD3A-28A905D502AE}.Debug|Win32.Build.0 = Debug|Win32
+		{6396ECD6-CFD3-3A8F-DD3A-28A905D502AE}.Release|Win32.ActiveCfg = Release|Win32
+		{6396ECD6-CFD3-3A8F-DD3A-28A905D502AE}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
