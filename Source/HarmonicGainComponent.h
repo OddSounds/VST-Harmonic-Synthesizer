@@ -25,7 +25,16 @@ public:
     void paint (Graphics&);
     void resized();
 
+	void mouseDown(const MouseEvent& event);
+	void mouseDrag(const MouseEvent& event);
+
+	void setHarmonics(std::vector<float>&);
+	std::vector<float>* getHarmonics();
+
 private:
+	std::vector<float> harmonicComponents;
+	std::vector<float> drawComponents;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HarmonicGainComponent)
 };
 

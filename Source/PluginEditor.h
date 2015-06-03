@@ -13,6 +13,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
+#include "HarmonicGainComponent.h"
 
 
 //==============================================================================
@@ -32,11 +33,14 @@ public:
     void resized() override;
     void sliderValueChanged (Slider*) override;
 
+	std::vector<float>* getGainsVector();
+
 private:
     MidiKeyboardComponent midiKeyboard;
     Label infoLabel, gainLabel, delayLabel;
     Slider gainSlider, delaySlider;
     ScopedPointer<ResizableCornerComponent> resizer;
+	ScopedPointer<HarmonicGainComponent> harmonicsGain;
     ComponentBoundsConstrainer resizeLimits;
 
     AudioPlayHead::CurrentPositionInfo lastDisplayedPosition;

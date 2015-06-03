@@ -1,4 +1,5 @@
 #include "JuceHeader.h"
+#include "HarmonicGainComponent.h"
 
 class HarmonicSound : public SynthesiserSound
 {
@@ -29,18 +30,21 @@ public:
 
 	void renderNextBlock(AudioSampleBuffer& outputBuffer, int startSample, int numSamples) override;
 
-	void setHarmonicGain(double gains[16]);
+	void setHarmonicPtr(std::vector<float>* ptr);
 	
 
 private:
-	double currentPhase, phaseDelta, gain;
+	ScopedPointer<HarmonicGainComponent> gainsComponent;
+
+	double gain;
 
 	double attackTime, decayTime, releaseTime;
 	double sustainLevel;
 
 	bool linearEnvelope;
 
-	double harmonicGain[16];
+	std::vector<float>* harmonicPtr;
+	std::vector<double> currentPhase, phaseDelta;
 
 	short envelopeStage;
 };

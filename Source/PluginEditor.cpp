@@ -21,6 +21,11 @@ HarmonicSynthesizerVSTProcessorEditor::HarmonicSynthesizerVSTProcessorEditor (Ha
       gainSlider ("gain"),
       delaySlider ("delay")
 {
+	addAndMakeVisible(harmonicsGain = new HarmonicGainComponent());
+	harmonicsGain->setName("gaincomponent");
+
+	owner.setGainsPtr(harmonicsGain->getHarmonics());
+
     // add some sliders..
     addAndMakeVisible (gainSlider);
     gainSlider.setSliderStyle (Slider::Rotary);
@@ -48,7 +53,7 @@ HarmonicSynthesizerVSTProcessorEditor::HarmonicSynthesizerVSTProcessorEditor (Ha
 
     // add the triangular resizer component for the bottom-right of the UI
     addAndMakeVisible (resizer = new ResizableCornerComponent (this, &resizeLimits));
-    resizeLimits.setSizeLimits (150, 150, 800, 300);
+    resizeLimits.setSizeLimits (150, 150, 800, 800);
 
     // set our component's initial size to be the last one that was stored in the filter's settings
     setSize (owner.lastUIWidth,
@@ -67,15 +72,14 @@ void HarmonicSynthesizerVSTProcessorEditor::paint (Graphics& g)
     g.setGradientFill (ColourGradient (Colours::white, 0, 0,
                                        Colours::grey, 0, (float) getHeight(), false));
     g.fillAll();
-
-	g.drawLine(0, 0, 100, 100, 2.0);
 }
 
 void HarmonicSynthesizerVSTProcessorEditor::resized()
 {
-    infoLabel.setBounds (10, 4, 400, 25);
+	infoLabel.setBounds (10, 4, 400, 25);
     gainSlider.setBounds (20, 60, 150, 40);
     delaySlider.setBounds (200, 60, 150, 40);
+	harmonicsGain->setBounds(20, 100, 330, 240);
 
     const int keyboardHeight = 70;
     midiKeyboard.setBounds (4, getHeight() - keyboardHeight - 4, getWidth() - 8, keyboardHeight);

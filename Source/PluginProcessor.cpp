@@ -29,6 +29,7 @@ HarmonicSynthesizerVSTAudioProcessor::HarmonicSynthesizerVSTAudioProcessor()
 	for(int i = 0; i < 8; i++)
 		synth.addVoice(new HarmonicVoice());
 
+	synth.addSound(new HarmonicSound);
 }
 
 HarmonicSynthesizerVSTAudioProcessor::~HarmonicSynthesizerVSTAudioProcessor()
@@ -173,7 +174,7 @@ void HarmonicSynthesizerVSTAudioProcessor::processBlock (AudioSampleBuffer& buff
 //==============================================================================
 AudioProcessorEditor* HarmonicSynthesizerVSTAudioProcessor::createEditor()
 {
-    return new HarmonicSynthesizerVSTProcessorEditor (*this);
+	return new HarmonicSynthesizerVSTProcessorEditor(*this);
 }
 
 //==============================================================================
@@ -264,6 +265,16 @@ bool HarmonicSynthesizerVSTAudioProcessor::silenceInProducesSilenceOut() const
 double HarmonicSynthesizerVSTAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
+}
+
+void HarmonicSynthesizerVSTAudioProcessor::setGainsPtr(std::vector<float>* ptr)
+{
+	this->gainsPtr = ptr;
+
+	for(int i = 0; i < synth.getNumVoices(); i++)
+	{
+		(dynamic_cast<HarmonicVoice*> (synth.getVoice(i)))->setHarmonicPtr(ptr);
+	}
 }
 
 //==============================================================================

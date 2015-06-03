@@ -20,6 +20,12 @@ bool HarmonicSound::appliesToChannel(int midiChannel) override
 
 HarmonicVoice::HarmonicVoice()
 {
+	for(int i = 0; i < 16; i++)
+	{
+		currentPhase.push_back(0);
+		phaseDelta.push_back(0);
+	}
+
 	linearEnvelope = true;
 	gain = 1;
 }
@@ -31,23 +37,27 @@ bool HarmonicVoice::canPlaySound(SynthesiserSound* sound) override
 
 void HarmonicVoice::startNote(int midiNoteNumber, float velocity, SynthesiserSound* sound, int currentPitchWheelPosition) override
 {
-	currentPhase = 0;
-
 	double cyclesPerSecond = MidiMessage::getMidiNoteInHertz (midiNoteNumber);
 	double cyclesPerSample = cyclesPerSecond / getSampleRate();
 
-	phaseDelta = cyclesPerSample * 2.0 * double_Pi;
+	for(int i = 0; i < 16; i++)
+	{
+		currentPhase.at(i) = 0;
+		phaseDelta.at(i) = cyclesPerSample*(i+1) * 2.0 * double_Pi;
+	}
 }
 
 void HarmonicVoice::stopNote(float velocity, bool allowTailOff) override
 {
 	clearCurrentNote();
-	phaseDelta = 0;
+
+	for(int i = 0; i < 16; i++)
+		phaseDelta.at(i) = 0;
 }
 
 void HarmonicVoice::renderNextBlock(AudioSampleBuffer& outputBuffer, int startSample, int numSamples) override
 {
-	if(phaseDelta != 0)
+	if(phaseDelta.at(0) != 0)
 	{
 		while(--numSamples >= 0)
 		{
@@ -55,13 +65,14 @@ void HarmonicVoice::renderNextBlock(AudioSampleBuffer& outputBuffer, int startSa
 
 			for(int i = 0; i < 16; i++)
 			{
-				sample += (float)sin(currentPhase*(i+1))*gain*harmonicGain[i];
+				sample += (float)sin(currentPhase.at(i))*harmonicPtr->at(i);
+
+				currentPhase.at(i) += phaseDelta.at(i);
 			}
 
 			for(int i = 0; i < outputBuffer.getNumChannels(); i++)
 				outputBuffer.addSample(i, startSample, sample);
 
-			currentPhase += phaseDelta;
 			++startSample;
 		}
 	}
@@ -77,7 +88,20 @@ void HarmonicVoice::controllerMoved(int controllerNumber, int newControllerValue
 	return;
 }
 
-void HarmonicVoice::setHarmonicGain(double gains[16])
+void HarmonicVoice::setHarmonicPtr(std::vector<float>* ptr)
 {
-	memcpy(harmonicGain, gains, 16*sizeof(double));
+	this->harmonicPtr = ptr;
 }
+
+HarmonicSound::HarmonicSound()
+{}
+
+/*bool HarmonicSound::appliesToChannel(int midiChannel) override
+{
+	return true;
+}
+
+bool HarmonicSound::appliesToChannel(int midiChannel) override
+{
+	return true;
+}*/
